@@ -1,6 +1,8 @@
-package com.microservices.user.command.rest;
+package com.microservices.user.query.rest;
 
-public class CreateUserRestModel {
+public class FindUserQueryModel{
+
+    private Long id;
 
     private String firstName;
 
@@ -8,9 +10,15 @@ public class CreateUserRestModel {
 
     private String email;
 
-    private String password;
-
     private String address;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -36,14 +44,6 @@ public class CreateUserRestModel {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -51,4 +51,5 @@ public class CreateUserRestModel {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
