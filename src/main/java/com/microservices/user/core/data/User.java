@@ -1,10 +1,12 @@
 package com.microservices.user.core.data;
 
-import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "email")
+        })
 public class User {
 
     @Id
