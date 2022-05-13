@@ -15,12 +15,6 @@ public class UserCommandController {
         this.userAggregate = userAggregate;
     }
 
-    @PostMapping("/users")
-    public ResponseEntity createUser(@RequestBody CreateUserRestModel user){
-        userAggregate.handleCreateUserCommand(user);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
     @DeleteMapping("/users/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id){
         userAggregate.handleDeleteUserCommand(id);

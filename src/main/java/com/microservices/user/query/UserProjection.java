@@ -24,4 +24,8 @@ public class UserProjection {
     public List<FindUserQueryModel> handleFindUsers(){
         return findUserMapper.toModelList(userFindRepository.findAll());
     }
+
+    public FindUserQueryModel handleFindUserByEmail(String email) {
+        return findUserMapper.toModel(userFindRepository.findByEmail(email));
+    }
 }

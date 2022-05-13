@@ -1,6 +1,7 @@
 package com.microservices.user.query.rest;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.io.Serializable;
@@ -20,5 +21,8 @@ public class FindUserQueryModel implements Serializable {
     private String email;
 
     private String address;
+
+    @JsonIgnore
+    private String password;
 
 }
