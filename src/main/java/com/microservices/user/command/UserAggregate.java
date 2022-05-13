@@ -1,6 +1,6 @@
 package com.microservices.user.command;
 
-import com.microservices.user.command.rest.CreateUserMapper;
+import com.microservices.user.command.mapper.CreateUserMapper;
 import com.microservices.user.command.rest.CreateUserRestModel;
 import org.springframework.stereotype.Component;
 

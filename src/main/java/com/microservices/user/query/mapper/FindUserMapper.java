@@ -1,6 +1,7 @@
-package com.microservices.user.query.rest;
+package com.microservices.user.query.mapper;
 
 import com.microservices.user.core.data.User;
+import com.microservices.user.query.rest.FindUserQueryModel;
 import org.mapstruct.Mapper;
 
 import java.util.List;
