@@ -1,6 +1,5 @@
 package com.microservices.user.core.config.security;
 
-import com.microservices.user.command.rest.CreateUserRestModel;
 import com.microservices.user.command.rest.LoginRequestRestModel;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
