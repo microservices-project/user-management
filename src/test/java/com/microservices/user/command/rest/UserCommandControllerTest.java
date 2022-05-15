@@ -17,7 +17,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql({"/user_data.sql"})
 public class UserCommandControllerTest {
 
     @Autowired
@@ -27,7 +26,7 @@ public class UserCommandControllerTest {
     private UserAggregate userAggregate;
 
     @Test
-    @WithMockUser("test.user@gmail.com")
+    @WithMockUser
     public void deleteUser_OK() throws Exception {
         doNothing().when(userAggregate).handleDeleteUserCommand(any());
         mockMvc.perform(delete("/user-management/users/1"))

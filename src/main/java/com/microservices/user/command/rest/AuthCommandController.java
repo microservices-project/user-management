@@ -25,7 +25,7 @@ public class AuthCommandController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity createUser(@RequestBody CreateUserRestModel user){
+    public ResponseEntity createUser(@RequestBody @Valid CreateUserRestModel user){
         userAggregate.handleCreateUserCommand(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
