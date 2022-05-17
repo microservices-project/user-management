@@ -31,7 +31,7 @@ public class AuthCommandControllerTest {
     private UserAggregate userAggregate;
 
     @Test
-    public void signing_OK() throws Exception {
+    public void makeSignInShouldReturnJwt() throws Exception {
         LoginResponseRestModel user = new LoginResponseRestModel("jwt");
         when(userAggregate.handleSignInCommand(any())).thenReturn(user);
         mockMvc.perform(post("/auth-management/signin")
@@ -72,7 +72,7 @@ public class AuthCommandControllerTest {
     }
 
     @Test
-    public void signUp_OK() throws Exception {
+    public void makeSignUpShouldReturnSuccess() throws Exception {
         doNothing().when(userAggregate).handleCreateUserCommand(any());
         mockMvc.perform(post("/auth-management/signup")
                 .contentType(MediaType.APPLICATION_JSON)
