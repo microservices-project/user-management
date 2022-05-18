@@ -17,7 +17,7 @@ public class UserFindRepository {
     }
 
     public User find(Long id){
-        return userRepository.findById(id).get();
+        return userRepository.findById(id).orElseThrow(() -> new DataNotFoundException("User not found"));
     }
 
     public List<User> findAll(){
@@ -25,6 +25,6 @@ public class UserFindRepository {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findUserByEmail(email).orElseThrow(() -> new DataNotFoundException());
+        return userRepository.findUserByEmail(email).orElseThrow(() -> new DataNotFoundException("User not found"));
     }
 }
