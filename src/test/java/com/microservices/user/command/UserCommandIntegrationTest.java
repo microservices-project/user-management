@@ -1,5 +1,6 @@
 package com.microservices.user.command;
 
+import com.microservices.user.command.rest.CreateUserRestModel;
 import com.microservices.user.command.rest.LoginRequestRestModel;
 import com.microservices.user.command.rest.LoginResponseRestModel;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql({"/user_data.sql"})
 public class UserCommandIntegrationTest {
     public static final String AUTH_MANAGEMENT_URL = "/auth-management";
 
@@ -26,6 +26,7 @@ public class UserCommandIntegrationTest {
     private TestRestTemplate testRestTemplate;
 
     @Test
+    @Sql({"classpath:user_data.sql"})
     public void makeSignInShouldReturnJwt() {
         LoginRequestRestModel requestBody = new LoginRequestRestModel("test.user@gmail.com", "password");
         ResponseEntity<LoginResponseRestModel> response = testRestTemplate.postForEntity(AUTH_MANAGEMENT_URL + "/signin", requestBody, LoginResponseRestModel.class);
@@ -33,5 +34,21 @@ public class UserCommandIntegrationTest {
         assertNotNull(response.getBody());
         assertThat(response.getBody().getJwt()).isNotEmpty();
     }
+
+    @Test
+    @Sql({"classpath:user_data.sql"})
+    public void makeSignInShouldReturnBadRequest() {
+        LoginRequestRestModel requestBody = new LoginRequestRestModel("test.usergmail.com", "password");
+        ResponseEntity<LoginResponseRestModel> response = testRestTemplate.postForEntity(AUTH_MANAGEMENT_URL + "/signin", requestBody, LoginResponseRestModel.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    public void makeSignUpShouldReturnOK() {
+        CreateUserRestModel requestBody = new CreateUserRestModel("first", "last","test2.user@gmail.com", "password","adr");
+        ResponseEntity response = testRestTemplate.postForEntity(AUTH_MANAGEMENT_URL + "/signup", requestBody, null);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    }
+
 
 }
