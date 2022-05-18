@@ -36,7 +36,6 @@ public class UserCommandIntegrationTest {
     }
 
     @Test
-    @Sql({"classpath:user_data.sql"})
     public void makeSignInShouldReturnBadRequest() {
         LoginRequestRestModel requestBody = new LoginRequestRestModel("test.usergmail.com", "password");
         ResponseEntity<LoginResponseRestModel> response = testRestTemplate.postForEntity(AUTH_MANAGEMENT_URL + "/signin", requestBody, LoginResponseRestModel.class);
