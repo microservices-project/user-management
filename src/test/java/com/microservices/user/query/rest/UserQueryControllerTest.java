@@ -45,6 +45,7 @@ public class UserQueryControllerTest {
         mockMvc.perform(get("/user-management/users/1")).andExpect(status().isOk());
     }
 
+
     @Test
     @WithMockUser
     public void makeGetUserThrowDataNotFoundException() throws Exception {

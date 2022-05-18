@@ -1,36 +1,43 @@
 package com.microservices.user.query;
 
-import com.microservices.user.query.rest.FindUserQueryModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql({"classpath:user_data.sql"})
 public class UserQueryIntegrationTest {
 
     @Autowired
-    private TestRestTemplate testRestTemplate;
+    private MockMvc mockMvc;
 
     @Test
     @WithMockUser
-    public void getUsersShouldReturnListOfUsers() {
-        ResponseEntity<List<FindUserQueryModel>> response =
-                testRestTemplate.exchange("/user-management/users", HttpMethod.GET,null,new ParameterizedTypeReference<List<FindUserQueryModel>>(){});
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    public void getUsersShouldReturnListOfUsers() throws Exception {
+        mockMvc.perform(get("/user-management/users"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser
+    @Sql({"classpath:user_data.sql"})
+    public void getUserShouldReturnUser() throws Exception {
+        mockMvc.perform(get("/user-management/users/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser
+    public void getUserShouldThrowDataNotFoundException() throws Exception {
+        mockMvc.perform(get("/user-management/users/2"))
+                .andExpect(status().isNotFound());
     }
 }
