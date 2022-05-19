@@ -13,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -43,7 +41,7 @@ public class UserAggregateTest {
     }
 
     @Test
-    public void handleCreateUserCommand() {
+    public void handleCreateUserCommandOK() {
 
         // Given
         CreateUserRestModel user = new CreateUserRestModel("first", "last", "email@email.com", "password", "address");
@@ -57,7 +55,7 @@ public class UserAggregateTest {
     }
 
    @Test
-    public void handleDeleteUserCommand() {
+    public void handleDeleteUserCommandOK() {
         // when
        doNothing().when(userCreateRepository).delete(any());
        // Then
@@ -65,23 +63,6 @@ public class UserAggregateTest {
        verify(userCreateRepository,times(1)).delete(any());
 
    }
-
-    @Test
-    public void handleSignInCommand() {
-        // Given
-        LoginRequestRestModel login = new LoginRequestRestModel("email@email.com", "password");
-        // When
-        when(authenticationManager.authenticate(any())).thenReturn(new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword()));
-        when(jwtTokenUtil.generateToken(login)).thenReturn("jwt");
-        // Then
-        LoginResponseRestModel result = userAggregate.handleSignInCommand(login);
-
-        verify(authenticationManager,times(1)).authenticate(any());
-        verify(jwtTokenUtil,times(1)).generateToken(any());
-
-        assertEquals(result.getJwt(), "jwt");
-
-    }
 
     @Test
     public void makeHandleSignInCommandReturnJWT() {
