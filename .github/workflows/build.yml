@@ -36,6 +36,8 @@ jobs:
         run: mvn clean install -DskipTests
   #Test's job
   tests:
+    #Depends on Build job
+    needs: build
     name: Unit tests
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
