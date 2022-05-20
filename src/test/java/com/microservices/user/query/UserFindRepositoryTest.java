@@ -80,10 +80,6 @@ class UserFindRepositoryTest {
     }
 
     @Test
-    void findByEmail() {
-    }
-
-    @Test
     void findByEmailShouldReturnUser() {
         // Given
         User user = new User(1L , "first", "last", "email@email.com", "password" , "address");

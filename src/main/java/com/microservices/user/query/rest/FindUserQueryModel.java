@@ -23,9 +23,10 @@ public class FindUserQueryModel implements Serializable {
 
     private String email;
 
-    private String address;
-
     @JsonIgnore
     private String password;
+
+    private String address;
+
 
 }

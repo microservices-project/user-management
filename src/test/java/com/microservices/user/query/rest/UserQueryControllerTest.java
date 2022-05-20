@@ -48,7 +48,7 @@ public class UserQueryControllerTest {
 
     @Test
     @WithMockUser
-    public void makeGetUserThrowDataNotFoundException() throws Exception {
+    public void getUserShouldThrowDataNotFoundException() throws Exception {
         when(userProjection.handleFindUser(1L)).thenThrow(new DataNotFoundException("User not found"));
         mockMvc.perform(get("/user-management/users/1"))
                 .andExpect(status().isNotFound())
