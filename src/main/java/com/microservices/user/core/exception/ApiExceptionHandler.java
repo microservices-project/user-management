@@ -1,5 +1,6 @@
 package com.microservices.user.core.exception;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,5 +20,10 @@ public class ApiExceptionHandler{
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleDataNotFoundException(DataNotFoundException exception){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().message(exception.getMessage()).build());
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<ErrorResponse> handleEmptyResultDataAccessException(EmptyResultDataAccessException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().message((exception.getMessage())).build());
     }
 }
