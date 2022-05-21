@@ -1,1 +1,1 @@
-INSERT INTO users (id, email, password) VALUES (1, 'test.user@gmail.com', '$2a$10$5RLQ4DrRPSx92N.Z0Tq8JOFW7YBiLkPr5Hp41I2yHe3zclmrMDxAe');
+INSERT INTO users (id, email, password, first_name, last_name, address) VALUES (1, 'test.user@gmail.com', '$2a$10$5RLQ4DrRPSx92N.Z0Tq8JOFW7YBiLkPr5Hp41I2yHe3zclmrMDxAe','first','last', 'adr');
