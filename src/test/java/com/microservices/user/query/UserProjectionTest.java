@@ -12,35 +12,33 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
 
 
 @ExtendWith(MockitoExtension.class)
 class UserProjectionTest {
 
     @Mock
-    private  UserFindRepository userFindRepository;
+    private UserFindRepository userFindRepository;
 
     @Mock
-    private  FindUserMapper findUserMapper;
+    private FindUserMapper findUserMapper;
 
 
     private UserProjection userProjection;
 
     @BeforeEach
-    public void setUp(){
-        this.userProjection = new UserProjection(userFindRepository,findUserMapper);
+    public void setUp() {
+        this.userProjection = new UserProjection(userFindRepository, findUserMapper);
     }
 
     @Test
     void handleFindUserShouldReturnUser() {
         // Given
-        User user = new User(1L,"first", "last", "email@email.com", "password", "address");
-        FindUserQueryModel userMapped = new FindUserQueryModel(1L,"first", "last", "email@email.com", "password", "address");
+        User user = new User(1L, "first", "last", "email@email.com", "password", "address");
+        FindUserQueryModel userMapped = new FindUserQueryModel(1L, "first", "last", "email@email.com", "password", "address");
         // When
         when(userFindRepository.find(1L)).thenReturn(user);
         when(findUserMapper.toModel(user)).thenReturn(userMapped);
@@ -68,11 +66,11 @@ class UserProjectionTest {
     @Test
     void handleFindUsersShouldReturnListOfUsers() {
         List<User> users = new ArrayList<>();
-        User user = new User(1L , "first", "last", "email@email.com", "password" , "address");
+        User user = new User(1L, "first", "last", "email@email.com", "password", "address");
         users.add(user);
 
         List<FindUserQueryModel> usersMapped = new ArrayList<>();
-        FindUserQueryModel userMapped = new FindUserQueryModel(1L,"first", "last", "email@email.com", "password", "address");
+        FindUserQueryModel userMapped = new FindUserQueryModel(1L, "first", "last", "email@email.com", "password", "address");
         usersMapped.add(userMapped);
         // when
         when(userFindRepository.findAll()).thenReturn(users);
@@ -82,7 +80,7 @@ class UserProjectionTest {
 
         assertNotNull(results);
         assertEquals(1, results.size());
-        assertEquals(userMapped.getId() , results.get(0).getId());
+        assertEquals(userMapped.getId(), results.get(0).getId());
         assertEquals(userMapped.getFirstName(), results.get(0).getFirstName());
         assertEquals(userMapped.getLastName(), results.get(0).getLastName());
         assertEquals(userMapped.getEmail(), results.get(0).getEmail());
@@ -94,8 +92,8 @@ class UserProjectionTest {
     void handleFindUserByEmailShouldReturnUser() {
 
         // Given
-        User user = new User(1L , "first", "last", "email@email.com", "password" , "address");
-        FindUserQueryModel userMapped = new FindUserQueryModel(1L,"first", "last", "email@email.com", "password", "address");
+        User user = new User(1L, "first", "last", "email@email.com", "password", "address");
+        FindUserQueryModel userMapped = new FindUserQueryModel(1L, "first", "last", "email@email.com", "password", "address");
 
         // When
         when(userFindRepository.findByEmail(user.getEmail())).thenReturn(user);
@@ -104,7 +102,7 @@ class UserProjectionTest {
         FindUserQueryModel result = userProjection.handleFindUserByEmail(userMapped.getEmail());
 
         assertNotNull(result);
-        assertEquals(user.getId() , result.getId());
+        assertEquals(user.getId(), result.getId());
         assertEquals(user.getFirstName(), result.getFirstName());
         assertEquals(user.getLastName(), result.getLastName());
         assertEquals(user.getEmail(), result.getEmail());

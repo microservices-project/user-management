@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserFindRepositoryTest {
@@ -25,14 +26,14 @@ class UserFindRepositoryTest {
     private UserFindRepository userFindRepository;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         userFindRepository = new UserFindRepository(userRepository);
     }
 
     @Test
     void getUserByIdShouldReturnUser() {
         // Given
-        User user = new User(1L , "first", "last", "email@email.com", "password" , "address");
+        User user = new User(1L, "first", "last", "email@email.com", "password", "address");
         // When
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
@@ -40,13 +41,14 @@ class UserFindRepositoryTest {
         User result = userFindRepository.find(1L);
 
         assertNotNull(result);
-        assertEquals(user.getId() , result.getId());
+        assertEquals(user.getId(), result.getId());
         assertEquals(user.getFirstName(), result.getFirstName());
         assertEquals(user.getLastName(), result.getLastName());
         assertEquals(user.getEmail(), result.getEmail());
         assertEquals(user.getPassword(), result.getPassword());
         assertEquals(user.getAddress(), result.getAddress());
     }
+
     @Test
     void getUserByIdShouldThrowDataNotFoundException() {
 
@@ -58,10 +60,11 @@ class UserFindRepositoryTest {
         assertEquals("user not found", exception.getMessage());
 
     }
+
     @Test
     void findAll() {
         List<User> users = new ArrayList<>();
-        User user = new User(1L , "first", "last", "email@email.com", "password" , "address");
+        User user = new User(1L, "first", "last", "email@email.com", "password", "address");
         users.add(user);
         // when
         when(userRepository.findAll()).thenReturn(users);
@@ -70,7 +73,7 @@ class UserFindRepositoryTest {
 
         assertNotNull(results);
         assertEquals(1, results.size());
-        assertEquals(user.getId() , results.get(0).getId());
+        assertEquals(user.getId(), results.get(0).getId());
         assertEquals(user.getFirstName(), results.get(0).getFirstName());
         assertEquals(user.getLastName(), results.get(0).getLastName());
         assertEquals(user.getEmail(), results.get(0).getEmail());
@@ -82,7 +85,7 @@ class UserFindRepositoryTest {
     @Test
     void findByEmailShouldReturnUser() {
         // Given
-        User user = new User(1L , "first", "last", "email@email.com", "password" , "address");
+        User user = new User(1L, "first", "last", "email@email.com", "password", "address");
         // When
         when(userRepository.findUserByEmail(user.getEmail())).thenReturn(Optional.of(user));
 
@@ -90,13 +93,14 @@ class UserFindRepositoryTest {
         User result = userFindRepository.findByEmail(user.getEmail());
 
         assertNotNull(result);
-        assertEquals(user.getId() , result.getId());
+        assertEquals(user.getId(), result.getId());
         assertEquals(user.getFirstName(), result.getFirstName());
         assertEquals(user.getLastName(), result.getLastName());
         assertEquals(user.getEmail(), result.getEmail());
         assertEquals(user.getPassword(), result.getPassword());
         assertEquals(user.getAddress(), result.getAddress());
     }
+
     @Test
     void findByEmailShouldThrowDataNotFoundException() {
 

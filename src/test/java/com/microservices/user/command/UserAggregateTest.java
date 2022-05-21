@@ -1,6 +1,7 @@
 package com.microservices.user.command;
 
 import com.microservices.user.command.mapper.CreateUserMapper;
+import com.microservices.user.command.producer.UserProducer;
 import com.microservices.user.command.rest.CreateUserRestModel;
 import com.microservices.user.command.rest.LoginRequestRestModel;
 import com.microservices.user.command.rest.LoginResponseRestModel;
@@ -32,12 +33,14 @@ public class UserAggregateTest {
     private JwtTokenUtil jwtTokenUtil;
     @Mock
     private PasswordEncoder passwordEncoder;
+    @Mock
+    private UserProducer userProducer;
 
     private UserAggregate userAggregate;
 
     @BeforeEach
     public void setUp() {
-        this.userAggregate =  new UserAggregate(userCreateRepository, createUserMapper, authenticationManager, jwtTokenUtil,passwordEncoder);
+        this.userAggregate =  new UserAggregate(userCreateRepository, createUserMapper, authenticationManager, jwtTokenUtil,passwordEncoder, userProducer);
     }
 
     @Test
