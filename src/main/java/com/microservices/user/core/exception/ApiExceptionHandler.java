@@ -13,7 +13,7 @@ public class ApiExceptionHandler{
     public ResponseEntity<ErrorResponse> handleException(Exception exception){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ErrorResponse.builder().message(exception.getMessage())
-                        .details(exception.getCause().getMessage())
+                        .details(exception.getCause() != null ? exception.getCause().getMessage() : "")
                         .build());
     }
 
