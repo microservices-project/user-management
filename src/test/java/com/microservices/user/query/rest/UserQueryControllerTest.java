@@ -1,6 +1,6 @@
 package com.microservices.user.query.rest;
 
-import com.microservices.user.core.exception.DataNotFoundException;
+import com.microservices.common.exception.DataNotFoundException;
 import com.microservices.user.query.UserProjection;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

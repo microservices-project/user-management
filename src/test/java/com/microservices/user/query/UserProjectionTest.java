@@ -1,7 +1,7 @@
 package com.microservices.user.query;
 
 import com.microservices.user.core.data.User;
-import com.microservices.user.core.exception.DataNotFoundException;
+import com.microservices.common.exception.DataNotFoundException;
 import com.microservices.user.query.mapper.FindUserMapper;
 import com.microservices.user.query.rest.FindUserQueryModel;
 import org.junit.jupiter.api.BeforeEach;
