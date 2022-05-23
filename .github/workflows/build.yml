@@ -40,7 +40,7 @@ jobs:
       - name: Run Build
         run: mvn clean install -DskipTests
         env:
-          GITHUB_TOKEN_REF: ${{ secrets.PUBLISH_COMMON_SECRET }}
+          GITHUB_TOKEN_REF: ${{ secrets.READ_COMMON_SECRET }}
   #Test's job
   tests:
     #Depends on Build job
@@ -74,4 +74,4 @@ jobs:
       - name: Run Tests
         run: mvn -B test
         env:
-          GITHUB_TOKEN_REF: ${{ secrets.PUBLISH_COMMON_SECRET }}
+          GITHUB_TOKEN_REF: ${{ secrets.READ_COMMON_SECRET }}
