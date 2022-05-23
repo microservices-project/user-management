@@ -20,7 +20,7 @@
 
     <repositories>
         <repository>
-            <id>github-package</id>
+            <id>github</id>
             <name>GitHub MicroServices Common Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/microservices-project/common</url>
         </repository>
