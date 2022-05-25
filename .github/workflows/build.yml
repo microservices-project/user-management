@@ -64,7 +64,8 @@ jobs:
 
   #Code Analysis's job
   code-analysis:
-    #Depends on Build job
+    #Depends on Test job
+    needs: test
     name: Code Analysis using Sonar
     #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
