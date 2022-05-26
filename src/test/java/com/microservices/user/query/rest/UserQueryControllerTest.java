@@ -1,6 +1,7 @@
 package com.microservices.user.query.rest;
 
-import com.microservices.user.core.exception.DataNotFoundException;
+import com.microservices.common.exception.DataNotFoundException;
+import com.microservices.common.query.rest.FindUserQueryModel;
 import com.microservices.user.query.UserProjection;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,10 @@ public class UserQueryControllerTest {
         mockMvc.perform(get("/user-management/users/1")).andExpect(status().isOk());
     }
 
+
     @Test
     @WithMockUser
-    public void makeGetUserThrowDataNotFoundException() throws Exception {
+    public void getUserShouldThrowDataNotFoundException() throws Exception {
         when(userProjection.handleFindUser(1L)).thenThrow(new DataNotFoundException("User not found"));
         mockMvc.perform(get("/user-management/users/1"))
                 .andExpect(status().isNotFound())

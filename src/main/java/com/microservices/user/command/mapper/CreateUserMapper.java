@@ -1,6 +1,7 @@
 package com.microservices.user.command.mapper;
 
-import com.microservices.user.command.rest.CreateUserRestModel;
+
+import com.microservices.common.command.rest.CreateUserRestModel;
 import com.microservices.user.core.data.User;
 import org.mapstruct.Mapper;
 
