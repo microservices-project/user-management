@@ -1,11 +1,13 @@
 package com.microservices.user.command;
 
+import com.microservices.common.command.rest.CreateUserRestModel;
+import com.microservices.common.command.rest.LoginRequestRestModel;
+import com.microservices.common.config.security.JwtTokenUtil;
 import com.microservices.user.command.mapper.CreateUserMapper;
 import com.microservices.user.command.producer.UserProducer;
-import com.microservices.user.command.rest.CreateUserRestModel;
-import com.microservices.user.command.rest.LoginRequestRestModel;
+
 import com.microservices.user.command.rest.LoginResponseRestModel;
-import com.microservices.user.core.config.security.JwtTokenUtil;
+
 import com.microservices.user.core.data.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

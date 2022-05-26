@@ -1,5 +1,6 @@
 package com.microservices.user.query.rest;
 
+import com.microservices.common.query.rest.FindUserQueryModel;
 import com.microservices.user.query.UserProjection;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

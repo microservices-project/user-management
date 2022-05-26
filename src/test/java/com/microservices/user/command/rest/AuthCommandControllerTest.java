@@ -1,6 +1,8 @@
 package com.microservices.user.command.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microservices.common.command.rest.CreateUserRestModel;
+import com.microservices.common.command.rest.LoginRequestRestModel;
 import com.microservices.user.command.UserAggregate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
