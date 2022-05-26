@@ -1,7 +1,8 @@
 package com.microservices.user.query;
 
+import com.microservices.common.query.rest.FindUserQueryModel;
 import com.microservices.user.query.mapper.FindUserMapper;
-import com.microservices.user.query.rest.FindUserQueryModel;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;

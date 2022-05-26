@@ -1,5 +1,7 @@
 package com.microservices.user.command.rest;
 
+import com.microservices.common.command.rest.CreateUserRestModel;
+import com.microservices.common.command.rest.LoginRequestRestModel;
 import com.microservices.user.command.UserAggregate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

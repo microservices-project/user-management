@@ -2,7 +2,7 @@ package com.microservices.user.query;
 
 import com.microservices.user.core.data.User;
 import com.microservices.user.core.data.UserRepository;
-import com.microservices.user.core.exception.DataNotFoundException;
+import com.microservices.common.exception.DataNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

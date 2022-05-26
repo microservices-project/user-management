@@ -1,7 +1,9 @@
 package com.microservices.user.core.config.security;
 
+import com.microservices.common.config.security.UserDetailsImpl;
+import com.microservices.common.query.rest.FindUserQueryModel;
 import com.microservices.user.query.UserProjection;
-import com.microservices.user.query.rest.FindUserQueryModel;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 

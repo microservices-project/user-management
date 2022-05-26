@@ -1,7 +1,8 @@
 package com.microservices.user.command;
 
-import com.microservices.user.command.rest.CreateUserRestModel;
-import com.microservices.user.command.rest.LoginRequestRestModel;
+
+import com.microservices.common.command.rest.CreateUserRestModel;
+import com.microservices.common.command.rest.LoginRequestRestModel;
 import com.microservices.user.command.rest.LoginResponseRestModel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
